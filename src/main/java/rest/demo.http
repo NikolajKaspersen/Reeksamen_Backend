@@ -1,4 +1,4 @@
-GET http://localhost:8080/devops_starter_war_exploded/api/info
+GET http://localhost:8080/api/info
 
 ###
 POST http://localhost:8080/api/login
