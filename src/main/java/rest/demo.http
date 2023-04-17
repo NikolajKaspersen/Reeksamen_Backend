@@ -1,0 +1,13 @@
+GET http://localhost:8080/devops_starter_war_exploded/api/info
+
+###
+POST http://localhost:8080/api/login
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "test123"
+}
+###
+GET http://localhost:8080/api/info/admin
+x-access-token:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGVzIjoiYWRtaW4iLCJleHAiOjE2ODE3MzIwODUsImlhdCI6MTY4MTczMDI4NSwiaXNzdWVyIjoic2VtZXN0ZXJzdGFydGNvZGUtZGF0MyIsInVzZXJuYW1lIjoiYWRtaW4ifQ.o5FI2XBOG3OE-FwLjFdBXiFpn9WcieNCWyZUNSK3VWw"
