@@ -29,6 +29,42 @@ public class UserFacade {
         return instance;
     }
 
+    public EntityManager getEntityManager() {
+        return emf.createEntityManager();
+    }
+
+    public User getUserByUserId(String id) {
+        EntityManager em = getEntityManager();
+        try {
+            User user = em.find(User.class, id);
+            return user;
+        } finally {
+            em.close();
+        }
+    }
+
+    public User getAllUsers() {
+        EntityManager em = getEntityManager();
+        try {
+            User user = em.find(User.class, "all");
+            return user;
+        } finally {
+            em.close();
+        }
+    }
+
+    public User createUser(User user) {
+        EntityManager em = getEntityManager();
+        try {
+            em.getTransaction().begin();
+            em.persist(user);
+            em.getTransaction().commit();
+            return user;
+        } finally {
+            em.close();
+        }
+    }
+
     public User getVerifiedUser(String username, String password) throws AuthenticationException {
         EntityManager em = emf.createEntityManager();
         User user;
@@ -41,6 +77,33 @@ public class UserFacade {
             em.close();
         }
         return user;
+    }
+
+    public User deleteUsername(String username) {
+        EntityManager em = getEntityManager();
+        try {
+            User user = em.find(User.class, username);
+            em.getTransaction().begin();
+            em.remove(user);
+            em.getTransaction().commit();
+            return user;
+        } finally {
+            em.close();
+        }
+    }
+
+    public User editUsername(String username, String password) {
+        EntityManager em = getEntityManager();
+        try {
+            User user = em.find(User.class, username);
+            em.getTransaction().begin();
+            user.setUserName(username);
+            user.setUserPass(password);
+            em.getTransaction().commit();
+            return user;
+        } finally {
+            em.close();
+        }
     }
 
 }
