@@ -1,7 +1,9 @@
 package facades;
 
+import dtos.BookingDto;
 import dtos.CarDto;
 import entities.Car;
+import entities.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -46,6 +48,12 @@ public class CarFacade {
         } finally {
             em.close();
         }
+    }
+    public List<BookingDto> getBookingByCar(Long id) {
+        EntityManager em = getEntityManager();
+        TypedQuery<Car> query = em.createQuery("SELECT c FROM Car c WHERE c.id = :id", Car.class).setParameter("id", id);
+        Car car = query.getSingleResult();
+        return BookingDto.getDtos(car.getBookings());
     }
 
     public CarDto getCarById(long id) {

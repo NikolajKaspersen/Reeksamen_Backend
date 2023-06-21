@@ -22,19 +22,18 @@ public class Booking {
     private List<WashingAssistant> washingAssistants = new ArrayList<>();
 
     @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinTable(name = "booking_car",
-            joinColumns = @JoinColumn(name = "booking_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "car_id", referencedColumnName = "id"))
     private Car car;
 
 
-    public Booking () {
+    public Booking() {
 
     }
 
     public Booking(String date_and_time, String duration) {
         this.date_and_time = date_and_time;
         this.duration = duration;
+        this.car = car;
+        this.washingAssistants = new ArrayList<>();
     }
 
     public Long getId() {
@@ -70,13 +69,12 @@ public class Booking {
     }
 
     public void addWashingAssistant(WashingAssistant washingAssistant) {
-        if(washingAssistant != null) {
-            this.washingAssistants.add(washingAssistant);
-        }
+        this.washingAssistants.add(washingAssistant);
+        washingAssistant.addBooking(this);
     }
 
-public void removeWashingAssistant(WashingAssistant washingAssistant) {
-        if(washingAssistant != null) {
+    public void removeWashingAssistant(WashingAssistant washingAssistant) {
+        if (washingAssistant != null) {
             this.washingAssistants.remove(washingAssistant);
         }
     }
@@ -92,14 +90,14 @@ public void removeWashingAssistant(WashingAssistant washingAssistant) {
 
     // add Car to Booking
     public void addCar(Car car) {
-        if(car != null) {
+        if (car != null) {
             this.car = car;
         }
     }
 
     // remove Car from Booking
     public void removeCar(Car car) {
-        if(car != null) {
+        if (car != null) {
             this.car = null;
         }
     }

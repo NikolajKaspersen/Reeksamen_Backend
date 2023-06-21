@@ -31,6 +31,7 @@ public class WashingAssistant {
         this.Primary_language = Primary_language;
         this.years_of_experience = years_of_experience;
         this.price_per_hour = price_per_hour;
+        this.bookings = new ArrayList<>();
     }
 
     public Long getId() {
@@ -86,7 +87,7 @@ public class WashingAssistant {
     // Add a booking to the list of bookings
     public void addBooking(Booking booking) {
         bookings.add(booking);
-        booking.getWashingAssistants().add(this);
+//        booking.getWashingAssistants().add(this);
     }
 
     // Remove a booking from the list of bookings

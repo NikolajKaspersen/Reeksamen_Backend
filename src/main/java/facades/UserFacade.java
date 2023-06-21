@@ -1,6 +1,9 @@
 package facades;
 
+import dtos.BookingDto;
+import dtos.CarDto;
 import dtos.UserDto;
+import entities.Booking;
 import entities.User;
 
 import javax.persistence.EntityManager;
@@ -52,6 +55,15 @@ public class UserFacade {
         }
     }
 
+
+//    public List<BookingDto> getBookingByUser(String username) {
+//        EntityManager em = getEntityManager();
+//        TypedQuery<User> query = em.createQuery("SELECT u FROM User u WHERE u.userName = :username", User.class).setParameter("username", username);
+//        CarFacade cars;
+//
+//        User user = query.getSingleResult();
+//        return BookingDto.getDtos(user.getBookings());
+//    }
 
     public List<UserDto> getAllUsers() {
         EntityManager em = getEntityManager();

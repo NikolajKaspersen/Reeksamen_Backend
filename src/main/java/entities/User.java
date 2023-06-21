@@ -35,6 +35,7 @@ public class User implements Serializable {
   private List<Car> cars = new ArrayList<>();
 
 
+
   public List<String> getRolesAsStrings() {
     if (roleList.isEmpty()) {
       return null;
@@ -56,6 +57,7 @@ public class User implements Serializable {
   public User(String userName, String userPass) {
     this.userName = userName;
     this.userPass = BCrypt.hashpw(userPass, BCrypt.gensalt());
+    this.cars = new ArrayList<>();
   }
 
 

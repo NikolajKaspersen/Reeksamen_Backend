@@ -33,6 +33,8 @@ public class Car {
         this.brand = brand;
         this.make = make;
         this.year = year;
+        this.bookings = new ArrayList<>();
+        this.user = user;
     }
 
     public Long getId() {
@@ -85,7 +87,9 @@ public class Car {
 
     public void addBooking(Booking booking) {
         this.bookings.add(booking);
+        booking.setCar(this);
     }
+
 
     public void removeBooking(Booking booking) {
         this.bookings.remove(booking);

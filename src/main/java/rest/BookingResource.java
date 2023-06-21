@@ -21,6 +21,7 @@ public class BookingResource {
     private final BookingFacade bookingFacade = BookingFacade.getBookingFacade(EMF);
 
     @GET
+//    @Path("all")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllBookings() {
         List<BookingDto> bookingDtos = bookingFacade.getAllBookings();
