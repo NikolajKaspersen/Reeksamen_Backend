@@ -47,6 +47,10 @@ public class Car {
         this.registration_number = registration_number;
     }
 
+    public int getRegistration_number() {
+        return registration_number;
+    }
+
     public String getBrand() {
         return brand;
     }
