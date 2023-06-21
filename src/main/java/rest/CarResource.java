@@ -52,12 +52,13 @@ public class CarResource {
     }
 
     @PUT
+    @Path("{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response updateCar(String jsonCar) {
+    public Response updateCar(@PathParam("id") long id, String jsonCar) {
         CarDto carDto = GSON.fromJson(jsonCar, CarDto.class);
-        CarDto updatedCar = carFacade.editCar(carDto);
-        return Response.ok(GSON.toJson(updatedCar)).build();
+        CarDto updatedCarDto = carFacade.editCar(carDto);
+        return Response.ok(GSON.toJson(updatedCarDto)).build();
     }
 
     @DELETE

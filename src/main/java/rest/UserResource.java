@@ -53,10 +53,10 @@ public class UserResource {
     }
 
     @PUT
-    @Path("{id}")
+    @Path("{username}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response updateUser(@PathParam("id") long id, String jsonUser) {
+    public Response updateUser(@PathParam("username") long id, String jsonUser) {
         UserDto userDto = GSON.fromJson(jsonUser, UserDto.class);
         UserDto updatedUserDto = userFacade.editUser(userDto);
         return Response.ok(GSON.toJson(updatedUserDto)).build();
