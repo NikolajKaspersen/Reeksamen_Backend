@@ -59,8 +59,8 @@ public class WashingAssistantFacade {
     }
 
     public WashingAssistantDto createWashingAssistant(WashingAssistantDto washingAssistantDto) {
+        WashingAssistant washingAssistant = new WashingAssistant(washingAssistantDto.getName(), washingAssistantDto.getPrimary_language(), washingAssistantDto.getYears_of_experience(), washingAssistantDto.getPrice_per_hour());
         EntityManager em = getEntityManager();
-        WashingAssistant washingAssistant = new WashingAssistant(washingAssistantDto.getName(), washingAssistantDto.getPhone());
         try {
             em.getTransaction().begin();
             em.persist(washingAssistant);
@@ -71,7 +71,7 @@ public class WashingAssistantFacade {
         return new WashingAssistantDto(washingAssistant);
     }
 
-    public WashingAssistantDto deleteWashingAssistant(long id) {
+    public WashingAssistantDto deleteWashingAssistantById(long id) {
         EntityManager em = getEntityManager();
         try {
             em.getTransaction().begin();

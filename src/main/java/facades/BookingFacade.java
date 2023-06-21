@@ -72,7 +72,7 @@ public class BookingFacade {
         return new BookingDto(booking);
     }
 
-    public BookingDto deleteBooking(long id) {
+    public BookingDto deleteBookingById(long id) {
         EntityManager em = getEntityManager();
         Booking booking = em.find(Booking.class, id);
         try {

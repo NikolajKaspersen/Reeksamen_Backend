@@ -38,9 +38,10 @@ public class CarFacade {
 
     public List<CarDto> getAllCars() {
         EntityManager em = getEntityManager();
+        List<Car> cars;
         try {
             TypedQuery<Car> query = em.createQuery("SELECT c FROM Car c", Car.class);
-            List<Car> cars = query.getResultList();
+            cars = query.getResultList();
             return CarDto.getDtos(cars);
         } finally {
             em.close();
