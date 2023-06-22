@@ -45,7 +45,8 @@ public class WashingAssistantResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response createWashingAssistant(String json) {
-        WashingAssistantDto washingAssistantDto = GSON.fromJson(json, WashingAssistantDto.class);
+        WashingAssistant washingAssistant = GSON.fromJson(json, WashingAssistant.class);
+        WashingAssistantDto washingAssistantDto = new WashingAssistantDto(washingAssistant);
         WashingAssistantDto createdWashingAssistantDto = washingAssistantFacade.createWashingAssistant(washingAssistantDto);
         String responseJson = GSON.toJson(createdWashingAssistantDto);
         return Response.status(Response.Status.CREATED).entity(responseJson).build();

@@ -13,6 +13,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
+import static org.glassfish.json.JsonUtil.toJson;
+
 @Path("bookings")
 public class BookingResource {
     private static final EntityManagerFactory EMF = EMF_Creator.createEntityManagerFactory();
@@ -62,15 +64,9 @@ public class BookingResource {
     }
 
     @DELETE
-    @Path("{id}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response deleteBooking(@PathParam("id") long id) {
-        BookingDto deletedBookingDto = bookingFacade.deleteBookingById(id);
-        if (deletedBookingDto != null) {
-            String responseJson = GSON.toJson(deletedBookingDto);
-            return Response.ok(responseJson).build();
-        } else {
-            return Response.status(Response.Status.NOT_FOUND).build();
-        }
+    @Path("/{id}")
+    @Produces({MediaType.APPLICATION_JSON})
+    public String deleteBooking(@PathParam("id") Long id) {
+        return GSON.toJson(bookingFacade.deleteBookingById(id));
     }
 }
